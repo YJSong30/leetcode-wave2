@@ -1,0 +1,7 @@
+'''
+Python syntax
+
+Arrays
+
+
+'''
