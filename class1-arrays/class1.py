@@ -7,21 +7,39 @@ Big O + Arrays
 
 '''
 ** for loops **
+    
+        0 1 2 3
+nums = [1,2,3,4]
+len(nums) => 4
 
 for i in range(start, stop, step):
     ...
 
-for i in range(len(nums)): # 0 -> len(nums) - 1
+for i in range(len(nums)):
     ...
-    nums[i]
+    nums[i] => nums[0]
+            => nums[1]
+            => nums[2]
+            => nums[3]
 
 for num in nums:
     ...
+    num => 1
+    num => 2
+    num => 3
+    num => 4
 
 ** nested for loops **
+        0 1 2 3
+nums = [1,2,3,4]
+        i
+          j
+
 
 for i in range(len(nums)):
-    for j in range(len(nums)):
+    for j in range(i+1, len(nums)):
+        ...
+        curr_sum = nums[i] + nums[j]
         ...
 
 ** indexing in a list **
@@ -34,10 +52,21 @@ nums[2] = 3
 ** adding stuff to a list **
 
 nums = []
-for i in range(5):
+
+# for i in range(start, stop, step): 
+
+
+for i in range(5): # 0 -> 5 - 1 = 4. 0 -> 4
     nums.append(i)
 
+    
+give me every other element
 nums = [0,1,2,3,4]
+
+res = [0,2,4]
+return res
+
+
 '''
 
 # Big O
@@ -45,13 +74,13 @@ nums = [0,1,2,3,4]
 '''
 
 ** Time Complexity **
-
-nums = [1,2,3,4,5]
+        i
+nums = [1,2,3,4,5] -> 5 elements
 
 for i in range(len(nums)): # execute 5 times
     print(i)
 
-nums = [1,2,3,4,5,6,7,8,9,10...100]
+nums = [1,2,3,4,5,6,7,8,9,10...100] -> 100 elements
 
 for i in range(len(nums)): # execute 100 times
     print(i)
@@ -60,7 +89,7 @@ n = length of input
 o(n)
 
 
-** Space Complexity **
+** Space Complexity ** -> creating memory in my algorithm and then using it somehow
 
 k = 5
 nums = []
