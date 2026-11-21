@@ -153,6 +153,7 @@ Pattern 3: Finding indices
 # ==============================
 
 '''
+
 """
 ========================================
 1. LEETCODE 217 - CONTAINS DUPLICATE
@@ -162,7 +163,6 @@ Difficulty: Easy
 
 Given an integer array nums, return True if
 any value appears at least twice.
-Otherwise, return False.
 
 Example 1:
 Input: nums = [1, 2, 3, 1]
@@ -172,16 +172,28 @@ Example 2:
 Input: nums = [1, 2, 3, 4]
 Output: False
 
-Example 3:
-Input: nums = [1, 1, 1, 3, 3, 4]
-Output: True
+Approach:
+1. Create an empty set.
+2. Loop through each number.
+3. Check if number exists in set.
+4. If it exists, return True.
+5. Otherwise, add number to set.
+6. Return False if no duplicates.
 
-Time Complexity:
-Space Complexity:
+Time Complexity: O(n)
+Space Complexity: O(n)
 """
 
 def containsDuplicate(nums):
-    pass
+    seen = set()
+
+    for num in nums:
+        if num in seen:
+            return True
+
+        seen.add(num)
+
+    return False
 
 
 """
@@ -191,12 +203,9 @@ Topic: Hashmap
 Difficulty: Easy
 ========================================
 
-Given an integer array nums and an integer
-target, return the indices of two numbers
-that add up to target.
-
-You cannot use the same element twice.
-Exactly one valid solution exists.
+Given an array nums and an integer target,
+return the indices of two numbers that add
+up to target.
 
 Example 1:
 Input: nums = [2, 7, 11, 15], target = 9
@@ -206,16 +215,28 @@ Example 2:
 Input: nums = [3, 2, 4], target = 6
 Output: [1, 2]
 
-Example 3:
-Input: nums = [3, 3], target = 6
-Output: [0, 1]
+Approach:
+1. Create an empty hashmap.
+2. Loop through each index.
+3. Calculate complement = target - nums[i].
+4. Check if complement exists in hashmap.
+5. If found, return both indices.
+6. Otherwise, store number and index.
 
-Time Complexity:
-Space Complexity:
+Time Complexity: O(n)
+Space Complexity: O(n)
 """
 
 def twoSum(nums, target):
-    pass
+    seen = {}
+
+    for i in range(len(nums)):
+        diff = target - nums[i]
+
+        if diff in seen:
+            return [seen[diff], i]
+
+        seen[nums[i]] = i
 
 
 """
@@ -226,12 +247,10 @@ Difficulty: Easy
 ========================================
 
 Given two strings s and t, return True if
-t is an anagram of s. Otherwise, return False.
+t is an anagram of s.
 
-Anagram:
-Two strings containing the same characters
-with the same frequencies, but possibly
-in a different order.
+Anagram = same characters, same frequencies,
+but potentially different order.
 
 Example 1:
 Input: s = "anagram", t = "nagaram"
@@ -241,29 +260,46 @@ Example 2:
 Input: s = "rat", t = "car"
 Output: False
 
-Example 3:
-Input: s = "aacc", t = "ccac"
-Output: False
+Approach:
+1. Check if string lengths are equal.
+2. Create two empty hashmaps.
+3. Count characters in the first string.
+4. Count characters in the second string.
+5. Compare both hashmaps.
+6. Return True if they match.
 
-Time Complexity:
-Space Complexity:
+Time Complexity: O(n)
+Space Complexity: O(1) - fixed 26 lowercase letters
 """
 
 def isAnagram(s, t):
-    pass
+    if len(s) != len(t):
+        return False
+
+    count_s = {}
+    count_t = {}
+
+    for char in s:
+        count_s[char] = count_s.get(char, 0) + 1
+
+    for char in t:
+        count_t[char] = count_t.get(char, 0) + 1
+
+    return count_s == count_t
 
 
 # ========================================
 # TEST CASES
 # ========================================
 
-print(containsDuplicate([1, 2, 3, 1]))
-print(containsDuplicate([1, 2, 3, 4]))
+print(containsDuplicate([1, 2, 3, 1]))       # True
+print(containsDuplicate([1, 2, 3, 4]))       # False
 
-print(twoSum([2, 7, 11, 15], 9))
-print(twoSum([3, 2, 4], 6))
+print(twoSum([2, 7, 11, 15], 9))              # [0, 1]
+print(twoSum([3, 2, 4], 6))                   # [1, 2]
 
-print(isAnagram("anagram", "nagaram"))
-print(isAnagram("rat", "car"))
+print(isAnagram("anagram", "nagaram"))        # True
+print(isAnagram("rat", "car"))                # False
+
 
 '''
